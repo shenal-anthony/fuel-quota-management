@@ -16,7 +16,7 @@ sequelize.sync({ force: false }).then(() => {
 // Routes
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/vehicle", require("./routes/vehicleRoutes"));
-app.use("/api/fuelstation", require("./routes/fuelStationRoutes"));
+// app.use("/api/fuelstation", require("./routes/fuelStationRoutes"));
 app.use("/api/admin", require("./routes/adminRoutes"));
 
 // Placeholder route
