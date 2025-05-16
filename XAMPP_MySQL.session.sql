@@ -1,4 +1,4 @@
-CREATE DATABASE fuel_management;
+CREATE DATABASE IF NOT EXISTS fuel_management;
 USE fuel_management;
 
 CREATE TABLE users (
