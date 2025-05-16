@@ -8,6 +8,8 @@ import {
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
+import Vehicles from "./pages/Vehicles";
+import FuelStations from "./pages/FuelStations";
 
 import "./App.css";
 
@@ -26,6 +28,18 @@ function App() {
               isAuthenticated() ? <Dashboard /> : <Navigate to="/login" />
             }
           />
+          <Route
+            path="/vehicles"
+            element={
+              isAuthenticated() ? <Vehicles /> : <Navigate to="/login" />
+            }
+          />
+          {/* <Route
+            path="/fuelstations"
+            element={
+              isAuthenticated() ? <FuelStations /> : <Navigate to="/login" />
+            }
+          /> */}
 
           <Route path="/" element={<Navigate to="/login" />} />
         </Routes>

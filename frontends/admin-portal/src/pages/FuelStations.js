@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import FuelStationTable from '../components/FuelStationTable';
+// import FuelStationTable from '../components/FuelStationTable';
 
 
 const FuelStations = () => {
@@ -12,7 +12,7 @@ const FuelStations = () => {
         <Link to="/fuelstations">Fuel Stations</Link>
         <button onClick={() => localStorage.removeItem('token')}>Logout</button>
       </nav>
-      <FuelStationTable />
+      {/* <FuelStationTable /> */}
     </div>
   );
 };
