@@ -10,7 +10,7 @@
       "port": 3306,
       "driver": "MySQL",
       "name": "XAMPP_MySQL",
-      "database": "fuel_db",
+      "database": "fuel_management",
       "username": "root",
       "password": ""
     }
