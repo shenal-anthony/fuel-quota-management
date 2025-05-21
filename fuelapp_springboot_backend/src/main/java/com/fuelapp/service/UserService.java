@@ -17,7 +17,7 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public User registerUser(UserRegisterDto userDto) {
+    public User registerUser(UserRegisterDto userDto,String usertype) {
         // Set default role and encode password
         // Check if username already exists
         if (userRepository.findByUsername(userDto.getUsername()).isPresent()) {
@@ -31,7 +31,14 @@ public class UserService {
         user.setPhoneNumber(userDto.getPhoneNumber());
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole(Role.ROLE_USER);
+        if(usertype.equals("vehicleOwner")){
+            user.setRole(Role.ROLE_USER);
+        } else if (usertype.equals("stationOwner")) {
+            user.setRole(Role.ROLE_STATION);
+        } else if (usertype.equals("admin")) {
+            user.setRole(Role.ROLE_ADMIN);
+        }
+
         return userRepository.save(user);
     }
 }
