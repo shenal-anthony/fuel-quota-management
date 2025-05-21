@@ -4,6 +4,7 @@ import com.fuelapp.dto.UserRegisterDto;
 import com.fuelapp.model.Role;
 import com.fuelapp.model.User;
 import com.fuelapp.repository.UserRepository;
+import com.fuelapp.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private JwtUtil jwtUtil;
 
     public User registerUser(UserRegisterDto userDto,String usertype) {
         // Set default role and encode password
@@ -30,7 +33,7 @@ public class UserService {
         user.setNic(userDto.getNic());
         user.setPhoneNumber(userDto.getPhoneNumber());
         user.setEmail(userDto.getEmail());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(user.getPassword());
         if(usertype.equals("vehicleOwner")){
             user.setRole(Role.ROLE_USER);
         } else if (usertype.equals("stationOwner")) {
@@ -41,4 +44,16 @@ public class UserService {
 
         return userRepository.save(user);
     }
+
+    public String login(String username, String password) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid username or password"));
+
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new IllegalArgumentException("Invalid username or password");
+        }
+
+        return jwtUtil.generateToken(user.getUsername(), user.getRole().name());
+    }
+
 }
