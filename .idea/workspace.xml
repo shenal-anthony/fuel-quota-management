@@ -4,20 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6b76d23-ed8b-44a7-86d2-dc319cf8f877" name="Changes" comment="User registration for all done">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_api_0_11_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_impl_0_11_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_jackson_0_11_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/dto/LoginRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/security/CustomUserDetailsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/security/JwtAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/security/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+    <list default="true" id="f6b76d23-ed8b-44a7-86d2-dc319cf8f877" name="Changes" comment="User login done for all. Also used JWT">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_38.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_28.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/security/JwtAuthenticationFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +60,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -134,7 +129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1747821870639</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="User login done for all. Also used JWT">
+      <created>1747830267885</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1747830267885</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -143,6 +145,7 @@
     <MESSAGE value="repositories created." />
     <MESSAGE value="User registration for vehicle owners done" />
     <MESSAGE value="User registration for all done" />
-    <option name="LAST_COMMIT_MESSAGE" value="User registration for all done" />
+    <MESSAGE value="User login done for all. Also used JWT" />
+    <option name="LAST_COMMIT_MESSAGE" value="User login done for all. Also used JWT" />
   </component>
 </project>

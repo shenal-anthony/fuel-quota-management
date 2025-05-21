@@ -33,7 +33,7 @@ public class UserService {
         user.setNic(userDto.getNic());
         user.setPhoneNumber(userDto.getPhoneNumber());
         user.setEmail(userDto.getEmail());
-        user.setPassword(user.getPassword());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         if(usertype.equals("vehicleOwner")){
             user.setRole(Role.ROLE_USER);
         } else if (usertype.equals("stationOwner")) {
