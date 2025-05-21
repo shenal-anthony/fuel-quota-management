@@ -4,19 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6b76d23-ed8b-44a7-86d2-dc319cf8f877" name="Changes" comment="Sign up and loggin error fixed">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_beust_jcommander_1_82.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jai_imageio_jai_imageio_core_1_4_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_zxing_core_3_5_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_zxing_javase_3_5_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/config/WebConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/controller/VehicleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/dto/VehicleRegisterDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/service/VehicleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/util/QRCodeGenerator.java" afterDir="false" />
+    <list default="true" id="f6b76d23-ed8b-44a7-86d2-dc319cf8f877" name="Changes" comment="Vehicle registration done.">
+      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/controller/FuelController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/dto/FuelPumpRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/dto/VehicleFuelInfoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/service/SmsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/repository/VehicleTypeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/repository/VehicleTypeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/repository/FuelQuotaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/repository/FuelQuotaRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1747848371178</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Vehicle registration done.">
+      <created>1747853007369</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1747853007369</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -158,6 +159,7 @@
     <MESSAGE value="User registration for all done" />
     <MESSAGE value="User login done for all. Also used JWT" />
     <MESSAGE value="Sign up and loggin error fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sign up and loggin error fixed" />
+    <MESSAGE value="Vehicle registration done." />
+    <option name="LAST_COMMIT_MESSAGE" value="Vehicle registration done." />
   </component>
 </project>
