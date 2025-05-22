@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6b76d23-ed8b-44a7-86d2-dc319cf8f877" name="Changes" comment="Vehicle registration done.">
-      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/controller/FuelController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/dto/FuelPumpRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/dto/VehicleFuelInfoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/service/SmsService.java" afterDir="false" />
+    <list default="true" id="f6b76d23-ed8b-44a7-86d2-dc319cf8f877" name="Changes" comment="Fuel station operation backend done.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/repository/FuelQuotaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/repository/FuelQuotaRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1747853007369</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fuel station operation backend done.">
+      <created>1747859763167</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1747859763167</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -160,6 +162,7 @@
     <MESSAGE value="User login done for all. Also used JWT" />
     <MESSAGE value="Sign up and loggin error fixed" />
     <MESSAGE value="Vehicle registration done." />
-    <option name="LAST_COMMIT_MESSAGE" value="Vehicle registration done." />
+    <MESSAGE value="Fuel station operation backend done." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fuel station operation backend done." />
   </component>
 </project>
