@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6b76d23-ed8b-44a7-86d2-dc319cf8f877" name="Changes" comment="Fuel station operation backend done.">
+      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/controller/FuelStationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/dto/FuelStationRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/service/FuelStationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/model/FuelStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/model/FuelStation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/repository/FuelStationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/repository/FuelStationRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

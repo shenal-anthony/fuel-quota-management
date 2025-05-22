@@ -15,7 +15,11 @@ public class FuelStation {
     private Integer id;
 
     private String stationName;
-    private String location;
+    private String addressNo;
+    private String streetName;
+    private String city;
+    private String district;
+    private String province;
     private String contactNumber;
     private String email;
 
@@ -24,4 +28,7 @@ public class FuelStation {
     private User user;
 
     private Boolean isApproved = false;
+    private String stationUsername;
+    private String stationPassword;
+
 }
