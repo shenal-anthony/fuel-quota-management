@@ -14,5 +14,7 @@
       "username": "root",
       "password": ""
     }
-  ]
+  ],
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "java.format.settings.url": "eclipse-formatter.xml"
 }

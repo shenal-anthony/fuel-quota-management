@@ -57,11 +57,10 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- Lombok with version -->
+		<!-- Lombok without explicit version to use managed version -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.28</version>
 			<optional>true</optional>
 		</dependency>
 
@@ -113,17 +112,18 @@
 	<build>
 		<plugins>
 			<plugin>
+				<?m2e execute onConfiguration?>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.10.1</version>
+				<version>3.11.0</version>
 				<configuration>
-					<source>17</source>
-					<target>17</target>
+					<source>17.0.13</source>
+					<target>17.0.13</target>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-							<version>1.18.28</version>
+							<version>1.18.30</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>

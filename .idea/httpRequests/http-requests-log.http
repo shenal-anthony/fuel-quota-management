@@ -1,0 +1,16 @@
+POST http://localhost:8080/api/signup/login
+Content-Type: application/json
+Content-Length: 64
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "stationowner1",
+  "password": "StrongPass123"
+}
+
+<> 2025-05-22T181751.200.txt
+
+###
+
