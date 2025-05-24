@@ -22,7 +22,7 @@ public class UserService {
     @Autowired
     private JwtUtil jwtUtil;
 
-    public User registerUser(UserRegisterDto userDto,String usertype) {
+    public User registerUser(UserRegisterDto userDto, String usertype) {
         // Set default role and encode password
         // Check if username already exists
         if (userRepository.findByUsername(userDto.getUsername()).isPresent()) {
@@ -36,7 +36,7 @@ public class UserService {
         user.setPhoneNumber(userDto.getPhoneNumber());
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        if(usertype.equals("vehicleOwner")){
+        if (usertype.equals("vehicleOwner")) {
             user.setRole(Role.ROLE_USER);
         } else if (usertype.equals("stationOwner")) {
             user.setRole(Role.ROLE_STATION);
@@ -71,9 +71,7 @@ public class UserService {
 
         return Map.of(
                 "allowed", isStation,
-                "token", "Bearer " + token
-        );
+                "token", "Bearer " + token);
     }
-
 
 }
