@@ -42,4 +42,23 @@ public class UserController {
         }
     }
 
+    @PostMapping("/login-app")
+    public ResponseEntity<?> loginApp(@RequestBody LoginRequestDto request) {
+        try {
+            Map<String, Object> loginResult = userService.loginWithRoleCheck(request.getUsername(), request.getPassword());
+
+            if (!(Boolean) loginResult.get("allowed")) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Only station owners are allowed to login.");
+            }
+
+            return ResponseEntity.ok().body(Map.of("token", loginResult.get("token")));
+
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+        }
+    }
 }
+
+
+
+

@@ -36,16 +36,11 @@ public class FuelStationService {
         return stationRepo.save(station);
     }
 
-    public FuelStation approveStation(Integer stationId, String username, String password) {
-        if (stationRepo.existsByStationUsername(username)) {
-            throw new IllegalArgumentException("Station username already exists.");
-        }
+    public FuelStation approveStation(Integer stationId) {
         FuelStation station = stationRepo.findById(stationId)
                 .orElseThrow(() -> new RuntimeException("Station not found"));
 
         station.setIsApproved(true);
-        station.setStationUsername(username);
-        station.setStationPassword(password); // Recommend encrypting this
 
         return stationRepo.save(station);
     }

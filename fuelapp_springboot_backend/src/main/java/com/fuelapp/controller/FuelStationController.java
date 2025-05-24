@@ -22,11 +22,9 @@ public class FuelStationController {
 
     @PostMapping("/approve/{stationId}")
     public ResponseEntity<FuelStation> approveStation(
-            @PathVariable Integer stationId,
-            @RequestParam String username,
-            @RequestParam String password
+            @PathVariable Integer stationId
     ) {
-        FuelStation approved = stationService.approveStation(stationId, username, password);
+        FuelStation approved = stationService.approveStation(stationId);
         return ResponseEntity.ok(approved);
     }
 }

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 public class UserService {
 
@@ -55,5 +57,23 @@ public class UserService {
 
         return jwtUtil.generateToken(user.getUsername(), user.getRole().name(), user.getId());
     }
+
+    public Map<String, Object> loginWithRoleCheck(String username, String password) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid username or password"));
+
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new IllegalArgumentException("Invalid username or password");
+        }
+
+        boolean isStation = user.getRole() == Role.ROLE_STATION;
+        String token = jwtUtil.generateToken(user.getUsername(), user.getRole().name(), user.getId());
+
+        return Map.of(
+                "allowed", isStation,
+                "token", "Bearer " + token
+        );
+    }
+
 
 }

@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/fuel")
@@ -22,8 +24,13 @@ public class FuelController {
     @Autowired private FuelLogRepository logRepo;
     @Autowired private SmsService smsService;
 
-    @GetMapping("/{licensePlate}")
-    public ResponseEntity<VehicleFuelInfoDTO> getVehicleFuelInfo(@PathVariable String licensePlate) {
+    @PostMapping("/vehicle-info")
+    public ResponseEntity<VehicleFuelInfoDTO> getVehicleFuelInfoPost(@RequestBody Map<String, String> payload) {
+        String licensePlate = payload.get("licensePlate");
+        if (licensePlate == null || licensePlate.trim().isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+
         Vehicle vehicle = vehicleRepo.findByLicensePlate(licensePlate)
                 .orElseThrow(() -> new RuntimeException("Vehicle not found"));
 
@@ -41,6 +48,7 @@ public class FuelController {
 
         return ResponseEntity.ok(dto);
     }
+
 
     @PostMapping("/pump")
     public ResponseEntity<?> pumpFuel(@RequestBody FuelPumpRequest request) {
@@ -77,5 +85,23 @@ public class FuelController {
         smsService.sendSMS(phone, sms);
 
         return ResponseEntity.ok("Fuel logged and SMS sent.");
+    }
+
+    @PostMapping("/fuel-station-id")
+    public ResponseEntity<?> getStationId(@RequestBody Map<String, Integer> payload) {
+        Integer userId = payload.get("userId");
+
+        if (userId == null) {
+            return ResponseEntity.badRequest().body("Missing userId in request body");
+        }
+
+        Optional<FuelStation> fuelStation = stationRepo.findByUserID(userId);
+
+        if (fuelStation.isPresent()) {
+            Integer stationId = fuelStation.get().getId(); // Assuming getId() returns the station ID
+            return ResponseEntity.ok(Map.of("stationId", stationId));
+        } else {
+            return ResponseEntity.status(404).body("Fuel station not found for user ID: " + userId);
+        }
     }
 }

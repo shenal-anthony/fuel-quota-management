@@ -1,6 +1,7 @@
 package com.fuelapp.config;
 
 import com.fuelapp.security.JwtAuthenticationFilter;
+import com.twilio.http.HttpMethod;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.context.annotation.*;
@@ -31,6 +32,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(String.valueOf(HttpMethod.OPTIONS), "/**").permitAll()
                         .requestMatchers("/api/signup/**").permitAll()
                         .requestMatchers("/qrcodes/**").hasAuthority("ROLE_USER")
                         .requestMatchers("/api/vehicles/**").hasAuthority("ROLE_USER")
@@ -43,17 +45,17 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173"));  // your frontend origin
-        configuration.setAllowedOrigins(List.of("http://localhost:5174"));  // your frontend origin
+        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
-        configuration.setExposedHeaders(List.of("Authorization")); // if you want to expose auth header
+        configuration.setExposedHeaders(List.of("Authorization"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {

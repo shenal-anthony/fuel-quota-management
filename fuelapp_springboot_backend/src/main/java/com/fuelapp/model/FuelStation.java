@@ -28,7 +28,5 @@ public class FuelStation {
     private User user;
 
     private Boolean isApproved = false;
-    private String stationUsername;
-    private String stationPassword;
 
 }
