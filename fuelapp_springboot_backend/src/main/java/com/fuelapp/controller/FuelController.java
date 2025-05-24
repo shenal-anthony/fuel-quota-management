@@ -95,7 +95,7 @@ public class FuelController {
             return ResponseEntity.badRequest().body("Missing userId in request body");
         }
 
-        Optional<FuelStation> fuelStation = stationRepo.findByUserID(userId);
+        Optional<FuelStation> fuelStation = stationRepo.findByUser_Id(userId);
 
         if (fuelStation.isPresent()) {
             Integer stationId = fuelStation.get().getId(); // Assuming getId() returns the station ID

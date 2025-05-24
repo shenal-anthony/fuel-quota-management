@@ -6,18 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="78805043-0d65-4b3a-9194-e3dd40fcaa0c" name="Changes" comment="Fuel station operation backend done.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/controller/FuelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/controller/FuelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/controller/FuelStationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/controller/FuelStationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/model/FuelStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/model/FuelStation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/repository/FuelStationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/repository/FuelStationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/service/FuelStationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/service/FuelStationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/service/SmsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/service/SmsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
