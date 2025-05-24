@@ -53,7 +53,7 @@ public class UserService {
             throw new IllegalArgumentException("Invalid username or password");
         }
 
-        return jwtUtil.generateToken(user.getUsername(), user.getRole().name());
+        return jwtUtil.generateToken(user.getUsername(), user.getRole().name(), user.getId());
     }
 
 }

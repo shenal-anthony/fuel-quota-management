@@ -3,6 +3,7 @@ package com.fuelapp.service;
 import com.fuelapp.dmt.model.VehicleRegistry;
 import com.fuelapp.dmt.repository.VehicleRegistryRepository;
 import com.fuelapp.dto.VehicleRegisterDto;
+import com.fuelapp.dto.VehicleResponseDto;
 import com.fuelapp.model.User;
 import com.fuelapp.model.Vehicle;
 import com.fuelapp.model.VehicleType;
@@ -14,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -67,4 +69,16 @@ public class VehicleService {
         return vehicleRepository.save(savedVehicle);
 
     }
+    public List<VehicleResponseDto> getVehiclesByOwner(Integer ownerId) {
+        List<Vehicle> vehicles = vehicleRepository.findByOwnerId(ownerId);
+        return vehicles.stream().map(v -> new VehicleResponseDto(
+                v.getId(),
+                v.getLicensePlate(),
+                v.getFuelType(),
+                v.getQrCodeUrl(),
+                v.getVehicleType().getTypeName()
+        )).toList();
+    }
+
+
 }

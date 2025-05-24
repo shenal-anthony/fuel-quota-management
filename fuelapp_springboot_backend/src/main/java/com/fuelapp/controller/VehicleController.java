@@ -1,11 +1,15 @@
 package com.fuelapp.controller;
 
 import com.fuelapp.dto.VehicleRegisterDto;
+import com.fuelapp.dto.VehicleResponseDto;
 import com.fuelapp.model.Vehicle;
 import com.fuelapp.service.VehicleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/vehicles")
@@ -23,4 +27,11 @@ public class VehicleController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
+    @PostMapping("/own-vehicles")
+    public ResponseEntity<List<VehicleResponseDto>> getVehiclesByUser(@RequestBody Map<String, Integer> payload) {
+        Integer userId = payload.get("userId");
+        List<VehicleResponseDto> vehicles = vehicleService.getVehiclesByOwner(userId);
+        return ResponseEntity.ok(vehicles);
+    }
+
 }

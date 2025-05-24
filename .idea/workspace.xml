@@ -4,33 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6b76d23-ed8b-44a7-86d2-dc319cf8f877" name="Changes" comment="Fuel station operation backend done.">
-      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/controller/FuelStationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/dto/FuelStationRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/service/FuelStationService.java" afterDir="false" />
+    <list default="true" id="78805043-0d65-4b3a-9194-e3dd40fcaa0c" name="Changes" comment="Fuel station operation backend done.">
+      <change afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/dto/VehicleResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/fuel-quota-management.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/model/FuelStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/model/FuelStation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/repository/FuelStationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/repository/FuelStationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/controller/VehicleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/controller/VehicleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/repository/VehicleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/repository/VehicleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/security/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/security/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/service/VehicleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fuelapp_springboot_backend/src/main/java/com/fuelapp/service/VehicleService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Enum" />
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -39,10 +36,7 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
-}</component>
-  <component name="ProjectId" id="2xN51JNZIvDGXROdMDzXzF2MRWC" />
+  <component name="ProjectId" id="2xWmXng1gvjqsUMNvaxO7SyueNo" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -51,123 +45,20 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "backend",
-    "last_opened_file_path": "C:/Users/dinan/OneDrive/Desktop/Fuel App/fuel-quota-management",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors",
-    "vue.rearranger.settings.migration": "true"
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="FuelappApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fuelapp.FuelappApplication" />
-      <module name="fuelapp" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.fuelapp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.FuelappApplication" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f6b76d23-ed8b-44a7-86d2-dc319cf8f877" name="Changes" comment="" />
-      <created>1747765475099</created>
+      <changelist id="78805043-0d65-4b3a-9194-e3dd40fcaa0c" name="Changes" comment="Fuel station operation backend done." />
+      <created>1748062249884</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1747765475099</updated>
-      <workItem from="1747765479525" duration="29000" />
+      <updated>1748062249884</updated>
     </task>
-    <task id="LOCAL-00001" summary="added all entity class files">
-      <created>1747798957546</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1747798957546</updated>
-    </task>
-    <task id="LOCAL-00002" summary="added all entity class files">
-      <created>1747798979670</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1747798979670</updated>
-    </task>
-    <task id="LOCAL-00003" summary="repositories created.">
-      <created>1747800251864</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1747800251864</updated>
-    </task>
-    <task id="LOCAL-00004" summary="User registration for vehicle owners done">
-      <created>1747821364853</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1747821364853</updated>
-    </task>
-    <task id="LOCAL-00005" summary="User registration for all done">
-      <created>1747821870639</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1747821870639</updated>
-    </task>
-    <task id="LOCAL-00006" summary="User login done for all. Also used JWT">
-      <created>1747830267885</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1747830267885</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Sign up and loggin error fixed">
-      <created>1747848371178</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1747848371178</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Vehicle registration done.">
-      <created>1747853007369</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1747853007369</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Fuel station operation backend done.">
-      <created>1747859763167</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1747859763167</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
     <servers />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="added entity class files" />
-    <MESSAGE value="added all entity class files" />
-    <MESSAGE value="repositories created." />
-    <MESSAGE value="User registration for vehicle owners done" />
-    <MESSAGE value="User registration for all done" />
-    <MESSAGE value="User login done for all. Also used JWT" />
-    <MESSAGE value="Sign up and loggin error fixed" />
-    <MESSAGE value="Vehicle registration done." />
-    <MESSAGE value="Fuel station operation backend done." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fuel station operation backend done." />
   </component>
 </project>

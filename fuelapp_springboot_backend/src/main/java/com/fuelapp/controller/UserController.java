@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/signup")
 @RequiredArgsConstructor
@@ -34,7 +36,7 @@ public class UserController {
     public ResponseEntity<?> login(@RequestBody LoginRequestDto request) {
         try {
             String token = userService.login(request.getUsername(), request.getPassword());
-            return ResponseEntity.ok().body("Bearer " + token);
+            return ResponseEntity.ok().body(Map.of("token", "Bearer " + token));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
