@@ -5,24 +5,30 @@ import Register from './components/Register';
 import VehicleRegister from './components/VehicleRegister';
 import DashboardVehicleOwner from './components/DashboardVehicleOwner';
 import ProtectedRoute from './components/ProtectedRoute';
+import QrCodePage from './components/QrCodePage';
+import './components/common.css';
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('userId');
     setIsLoggedIn(false);
   };
 
   return (
     <Router>
-      <nav>
+      <nav className="nav-bar">
         {!isLoggedIn ? (
           <>
-            <Link to="/">Login</Link> | <Link to="/register">Register</Link>
+            <Link to="/">Login</Link>
+            <Link to="/register">Register</Link>
           </>
         ) : (
           <>
-            <Link to="/dashboard-vehicle-owner">Dashboard</Link> | <Link to="/add-vehicle">Add Vehicle</Link> | 
+            <Link to="/dashboard-vehicle-owner">Dashboard</Link>
+            <Link to="/add-vehicle">Add Vehicle</Link>
             <button onClick={handleLogout}>Logout</button>
           </>
         )}
@@ -46,7 +52,14 @@ function App() {
             </ProtectedRoute>
           }
         />
-        
+        <Route
+          path="/qr-code"
+          element={
+            <ProtectedRoute>
+              <QrCodePage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );

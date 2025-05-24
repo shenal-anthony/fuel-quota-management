@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 import { jwtDecode } from 'jwt-decode';
+import QrCodeDisplay from './QrCodeDisplay';
+import './common.css';
 
 const VehicleRegister = () => {
   const [form, setForm] = useState({
@@ -12,6 +14,7 @@ const VehicleRegister = () => {
 
   const [qrCodeUrl, setQrCodeUrl] = useState('');
   const [registered, setRegistered] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -31,6 +34,13 @@ const VehicleRegister = () => {
 
   const handleVehicleRegister = async () => {
     try {
+      // Form validation
+      if (!form.licensePlate || !form.chassisNumber || !form.vehicleType) {
+        setError('Please fill in all fields');
+        return;
+      }
+      
+      setError('');
       const response = await api.post('/vehicles/register', form);
       const data = response.data;
 
@@ -47,8 +57,8 @@ const VehicleRegister = () => {
       setQrCodeUrl(imageUrl);
       setRegistered(true);
     } catch (err) {
-      console.log('Vehicle registration failed:', err);
-      alert('Vehicle registration failed');
+      console.error('Vehicle registration failed:', err);
+      setError('Vehicle registration failed. Please try again.');
     }
   };
 
@@ -57,40 +67,17 @@ const VehicleRegister = () => {
       {!registered ? (
         <>
           <h2>Register Vehicle</h2>
+          {error && <p className="error-message">{error}</p>}
           <input name="licensePlate" placeholder="License Plate" value={form.licensePlate} onChange={handleChange} />
           <input name="chassisNumber" placeholder="Chassis Number" value={form.chassisNumber} onChange={handleChange} />
           <input name="vehicleType" placeholder="Vehicle Type" value={form.vehicleType} onChange={handleChange} />
           <button onClick={handleVehicleRegister}>Register</button>
         </>
       ) : (
-        <div className="qr-section">
-          <h2>Vehicle Registered Successfully!</h2>
-          <p>Scan your QR code below:</p>
-          <img src={qrCodeUrl} alt="QR Code" style={{ width: '250px' }} />
-          <br />
-          <a
-            href={qrCodeUrl}
-            download={`vehicle-qrcode.png`}
-            style={styles.downloadButton}
-          >
-            ⬇️ Download QR Code
-          </a>
-          
-        </div>
+        <QrCodeDisplay qrCodeUrl={qrCodeUrl} />
       )}
     </div>
   );
 };
-const styles = {
-downloadButton: {
-  display: 'inline-block',
-  marginTop: '10px',
-  padding: '6px 12px',
-  backgroundColor: '#2196F3',
-  color: 'white',
-  textDecoration: 'none',
-  borderRadius: '4px',
-  fontSize: '14px',
-}
-};
+
 export default VehicleRegister;
