@@ -8,6 +8,8 @@ import com.fuelapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class FuelStationService {
 
@@ -43,5 +45,8 @@ public class FuelStationService {
         station.setIsApproved(true);
 
         return stationRepo.save(station);
+    }
+    public Optional<FuelStation> getStationsByUserId(Integer userId) {
+        return stationRepo.findByUser_Id(userId);
     }
 }

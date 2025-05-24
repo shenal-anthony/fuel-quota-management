@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 import { jwtDecode } from 'jwt-decode';
 import QrCodeDisplay from './QrCodeDisplay';
+import { useNavigate } from 'react-router-dom';
 import './common.css';
 
 const FuelstationRegister = () => {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     stationName: '',
     addressNo: '',
@@ -45,23 +48,18 @@ const FuelstationRegister = () => {
         setError('Please fill in all fields');
         return;
       }
-      
+
       setError('');
-      const response = await api.post('/fuelstations/register', form);
-      const data = response.data;
+      const response = await api.post('/station/register', form);
 
-      const token = localStorage.getItem('token');
-      const imageRes = await fetch(`http://localhost:8080/${data.qrCodeUrl.replace(/\\/g, '/')}`, {
-        headers: {
-          Authorization: `${token}`,
-        },
-      });
+      // Optional: set QR code if returned
+      if (response.data.qrCodeUrl) {
+        setQrCodeUrl(response.data.qrCodeUrl);
+        setRegistered(true);
+      }
 
-      const blob = await imageRes.blob();
-      const imageUrl = URL.createObjectURL(blob);
-
-      setQrCodeUrl(imageUrl);
-      setRegistered(true);
+      // Navigate to dashboard after successful registration
+      navigate('/dashboard-fuelstation-owner');
     } catch (err) {
       console.error('Fuel station registration failed:', err);
       setError('Fuel station registration failed. Please try again.');

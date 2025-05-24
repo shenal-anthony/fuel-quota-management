@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/station")
 public class FuelStationController {
@@ -26,5 +28,11 @@ public class FuelStationController {
     ) {
         FuelStation approved = stationService.approveStation(stationId);
         return ResponseEntity.ok(approved);
+    }
+
+    @PostMapping("/own-stations")
+    public ResponseEntity<?> getStationsByOwner(@RequestBody Map<String, Object> payload) {
+        Integer userId = (Integer) payload.get("userId");
+        return ResponseEntity.ok(stationService.getStationsByUserId(userId));
     }
 }

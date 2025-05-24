@@ -52,7 +52,7 @@ const Register = () => {
       }
       
       setError('');
-      await api.post('/signup/user', form);
+      await api.post('/signup/station-owner', form);
       setSuccess('Registered successfully! Redirecting to login...');
       
       // Redirect to login page after successful registration
