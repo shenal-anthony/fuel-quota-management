@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.Optional;
 
@@ -75,11 +76,19 @@ public class FuelController {
         log.setTimestamp(LocalDateTime.now());
         logRepo.save(log);
 
+        // Format time
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String time = log.getTimestamp().format(formatter);
+
+        // Compose enhanced SMS
         String phone = vehicle.getOwner().getPhoneNumber();
         String sms = String.format(
-                "Fuel Pumped: %.2fL\nVehicle: %s\nRemaining Quota: %.2fL",
+                "Fuel Pumped: %.2fL\nVehicle: %s\nStation: %s, %s\nTime: %s\nRemaining Quota: %.2fL",
                 request.getPumpedLiters(),
                 vehicle.getLicensePlate(),
+                station.getStationName(),
+                station.getCity(),
+                time,
                 quota.getBalance()
         );
         smsService.sendSMS(phone, sms);
