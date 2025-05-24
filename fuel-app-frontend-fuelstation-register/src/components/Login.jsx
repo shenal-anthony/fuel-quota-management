@@ -24,10 +24,10 @@ const Login = ({ onLogin }) => {
 
       // Decode token and store userId
       const decoded = jwtDecode(token.replace('Bearer ', ''));
-      localStorage.setItem('userId', decoded.userId); // Store for use in VehicleRegister
+      localStorage.setItem('userId', decoded.userId); // Store for use in FuelstationRegister
 
       onLogin();
-      navigate('/dashboard-vehicle-owner');
+      navigate('/dashboard-fuelstation-owner');
     } catch (err) {
       console.error('Login failed:', err);
       setError('Login failed. Please check your credentials and try again.');

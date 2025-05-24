@@ -33,7 +33,6 @@ const DashboardFuelstationOwner = () => {
 
     fetchFuelstations();
   }, [navigate]);
-
   if (loading) {
     return <div className="dashboard-container">Loading...</div>;
   }
@@ -46,7 +45,8 @@ const DashboardFuelstationOwner = () => {
       
       {fuelstations.length === 0 ? (
         <p className="success-message">No fuel stations found. Please register your fuel station first.</p>
-      ) : (        <ul className="station-list">
+      ) : (
+        <ul className="station-list">
           {fuelstations.map((station) => (
             <li key={station.id} className="station-card">
               <p><strong>Station Name:</strong> {station.stationName}</p>
@@ -55,10 +55,9 @@ const DashboardFuelstationOwner = () => {
               <p><strong>Province:</strong> {station.province}</p>
               <p><strong>Contact:</strong> {station.contactNumber}</p>
               <p><strong>Email:</strong> {station.email}</p>
-            </li>
-          ))}
-        </ul>
-      )}
+            </li>          ))}
+        </ul>      )}
+      <button onClick={() => navigate('/register-fuelstation')} className="add-station-button">➕ Add Fuel Station</button>
     </div>
   );
 };

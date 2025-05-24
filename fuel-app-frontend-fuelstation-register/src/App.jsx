@@ -33,8 +33,7 @@ function App() {
             <button onClick={handleLogout}>Logout</button>
           </>
         )}
-      </nav>
-      <Routes>
+      </nav>      <Routes>
         <Route path="/" element={<Login onLogin={() => setIsLoggedIn(true)} />} />
         <Route path="/register" element={<Register />} />
         <Route
@@ -42,6 +41,14 @@ function App() {
           element={
             <ProtectedRoute>
               <DashboardFuelstationOwner />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/register-fuelstation"
+          element={
+            <ProtectedRoute>
+              <FuelstationRegister />
             </ProtectedRoute>
           }
         />
