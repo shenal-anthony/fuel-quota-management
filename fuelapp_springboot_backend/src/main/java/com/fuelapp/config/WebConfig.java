@@ -9,6 +9,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/qrcodes/**")
-                .addResourceLocations("file:qrcodes/");
+                .addResourceLocations("file:./qrcodes/");
+
     }
 }

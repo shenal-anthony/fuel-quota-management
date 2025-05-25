@@ -1,7 +1,16 @@
 package com.fuelapp.model;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "fuel_stations")
@@ -15,7 +24,11 @@ public class FuelStation {
     private Integer id;
 
     private String stationName;
-    private String location;
+    private String addressNo;
+    private String streetName;
+    private String city;
+    private String district;
+    private String province;
     private String contactNumber;
     private String email;
 
@@ -24,4 +37,5 @@ public class FuelStation {
     private User user;
 
     private Boolean isApproved = false;
+
 }

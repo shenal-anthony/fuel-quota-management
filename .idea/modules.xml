@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/fuel-quota-management.iml" filepath="$PROJECT_DIR$/.idea/fuel-quota-management.iml" />
       <module fileurl="file://$PROJECT_DIR$/fuelapp_springboot_backend/fuelapp.iml" filepath="$PROJECT_DIR$/fuelapp_springboot_backend/fuelapp.iml" />
     </modules>
   </component>

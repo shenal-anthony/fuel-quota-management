@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 public class UserService {
 
@@ -20,7 +22,7 @@ public class UserService {
     @Autowired
     private JwtUtil jwtUtil;
 
-    public User registerUser(UserRegisterDto userDto,String usertype) {
+    public User registerUser(UserRegisterDto userDto, String usertype) {
         // Set default role and encode password
         // Check if username already exists
         if (userRepository.findByUsername(userDto.getUsername()).isPresent()) {
@@ -34,7 +36,7 @@ public class UserService {
         user.setPhoneNumber(userDto.getPhoneNumber());
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        if(usertype.equals("vehicleOwner")){
+        if (usertype.equals("vehicleOwner")) {
             user.setRole(Role.ROLE_USER);
         } else if (usertype.equals("stationOwner")) {
             user.setRole(Role.ROLE_STATION);
@@ -53,7 +55,23 @@ public class UserService {
             throw new IllegalArgumentException("Invalid username or password");
         }
 
-        return jwtUtil.generateToken(user.getUsername(), user.getRole().name());
+        return jwtUtil.generateToken(user.getUsername(), user.getRole().name(), user.getId());
+    }
+
+    public Map<String, Object> loginWithRoleCheck(String username, String password) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid username or password"));
+
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new IllegalArgumentException("Invalid username or password");
+        }
+
+        boolean isStation = user.getRole() == Role.ROLE_STATION;
+        String token = jwtUtil.generateToken(user.getUsername(), user.getRole().name(), user.getId());
+
+        return Map.of(
+                "allowed", isStation,
+                "token", "Bearer " + token);
     }
 
 }
