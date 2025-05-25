@@ -40,7 +40,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/station/register").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/station/all").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/station/approve/**").hasAuthority("ROLE_ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/station/own-stations").hasAuthority("ROLE_USER")
+                        .requestMatchers(HttpMethod.POST, "/api/station/own-stations").hasAuthority("ROLE_STATION")
                         .requestMatchers(HttpMethod.GET, "/api/station/vehicle-types/all").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/station/vehicle-types/update-quota/**")
                         .hasAuthority("ROLE_ADMIN")
@@ -51,6 +51,7 @@ public class SecurityConfig {
                         .requestMatchers("/qrcodes/**").permitAll()
                         .requestMatchers("/api/vehicles/**").hasAuthority("ROLE_USER")
                         .requestMatchers("/api/fuel/vehicle-info").permitAll()
+                        .requestMatchers("/api/fuel/pump").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
