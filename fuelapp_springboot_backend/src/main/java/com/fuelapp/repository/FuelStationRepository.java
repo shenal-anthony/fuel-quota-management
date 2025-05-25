@@ -8,4 +8,5 @@ import com.fuelapp.model.FuelStation;
 
 public interface FuelStationRepository extends JpaRepository<FuelStation, Integer> {
     Optional<FuelStation> findByUser_Id(Integer userId);
+
 }
