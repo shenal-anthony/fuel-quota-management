@@ -5,9 +5,10 @@ import com.fuelapp.model.FuelStation;
 import com.fuelapp.service.FuelStationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/station")
@@ -23,16 +24,16 @@ public class FuelStationController {
     }
 
     @PostMapping("/approve/{stationId}")
-    public ResponseEntity<FuelStation> approveStation(
-            @PathVariable Integer stationId
-    ) {
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<FuelStation> approveStation(@PathVariable Integer stationId) {
         FuelStation approved = stationService.approveStation(stationId);
         return ResponseEntity.ok(approved);
     }
 
-    @PostMapping("/own-stations")
-    public ResponseEntity<?> getStationsByOwner(@RequestBody Map<String, Object> payload) {
-        Integer userId = (Integer) payload.get("userId");
-        return ResponseEntity.ok(stationService.getStationsByUserId(userId));
+    @GetMapping("/all")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<FuelStation>> getAllStations() {
+        List<FuelStation> stations = stationService.getAllStations();
+        return ResponseEntity.ok(stations);
     }
 }

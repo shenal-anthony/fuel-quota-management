@@ -1,10 +1,10 @@
 package com.fuelapp.repository;
 
-import com.fuelapp.model.FuelStation;
-import com.fuelapp.model.User;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
+import com.fuelapp.model.FuelStation;
 
 public interface FuelStationRepository extends JpaRepository<FuelStation, Integer> {
     Optional<FuelStation> findByUser_Id(Integer userId);
