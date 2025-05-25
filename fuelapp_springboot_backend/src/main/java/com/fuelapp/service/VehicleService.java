@@ -7,6 +7,8 @@ import com.fuelapp.dto.VehicleResponseDto;
 import com.fuelapp.model.User;
 import com.fuelapp.model.Vehicle;
 import com.fuelapp.model.VehicleType;
+import com.fuelapp.model.FuelQuota;
+import com.fuelapp.repository.FuelQuotaRepository;
 import com.fuelapp.repository.UserRepository;
 import com.fuelapp.repository.VehicleRepository;
 import com.fuelapp.repository.VehicleTypeRepository;
@@ -15,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +29,7 @@ public class VehicleService {
     private final VehicleRegistryRepository vehicleRegistryRepository;
     private final UserRepository userRepository;
     private final VehicleTypeRepository vehicleTypeRepository;
+    private final FuelQuotaRepository fuelQuotaRepository;
 
     @Transactional
     public Vehicle registerVehicle(VehicleRegisterDto dto) {
@@ -61,6 +65,15 @@ public class VehicleService {
 
         // 6. Save vehicle to main DB
         Vehicle savedVehicle = vehicleRepository.save(vehicle);
+
+        // Create and save initial fuel quota
+        FuelQuota fuelQuota = new FuelQuota();
+        fuelQuota.setVehicle(savedVehicle);
+        fuelQuota.setQuotaLimit(vehicleType.getDefaultQuota());
+        fuelQuota.setBalance(vehicleType.getDefaultQuota());
+        fuelQuota.setLastReset(LocalDate.now());
+
+        fuelQuotaRepository.save(fuelQuota);
 
         // 7. Generate QR code and save path/url
         String qrCodeUrl = QRCodeGenerator.generateQRCode(savedVehicle.getLicensePlate());

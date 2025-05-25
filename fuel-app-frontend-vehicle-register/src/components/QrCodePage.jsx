@@ -6,10 +6,8 @@ import './common.css';
 const QrCodePage = () => {
   const location = useLocation();
   const qrCodeUrl = location.state?.qrCodeUrl || '';
-  
   return (
     <div className="form-box">
-      {console.log('QR Code URL:', qrCodeUrl)}
       <QrCodeDisplay qrCodeUrl={qrCodeUrl} />
     </div>
   );

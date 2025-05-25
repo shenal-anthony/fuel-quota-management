@@ -72,6 +72,7 @@ export default function PumpScreen({ route, navigation }) {
       navigation.popToTop();
     } catch (error) {
       Alert.alert('Pump Failed', error.message);
+      console.error('Pump error:', error);
     } finally {
       setLoading(false);
     }

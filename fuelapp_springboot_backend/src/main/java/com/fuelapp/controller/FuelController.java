@@ -82,6 +82,11 @@ public class FuelController {
 
         // Compose enhanced SMS
         String phone = vehicle.getOwner().getPhoneNumber();
+
+        if (!phone.startsWith("+")) {
+            // Assuming Sri Lanka country code (94)
+            phone = "+94" + phone;
+        }
         String sms = String.format(
                 "Fuel Pumped: %.2fL\nVehicle: %s\nStation: %s, %s\nTime: %s\nRemaining Quota: %.2fL",
                 request.getPumpedLiters(),
