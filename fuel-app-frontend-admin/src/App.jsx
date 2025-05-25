@@ -4,7 +4,9 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import DashboardAdmin from "./components/DashboardAdmin";
 import FuelConfigure from "./components/FuelConfigureAdmin";
+import FuelStations from "./components/ApprovedStations";
 import ProtectedRoute from "./components/ProtectedRoute";
+
 import "./components/common.css";
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
           <>
             <Link to="/dashboard-admin">Dashboard</Link>
             <Link to="/configure-admin">Fuel Configure</Link>
+            <Link to="/approved-admin">Fuel Stations</Link>
+
             <button onClick={handleLogout}>Logout</button>
           </>
         )}
@@ -51,6 +55,14 @@ function App() {
           element={
             <ProtectedRoute>
               <FuelConfigure />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/approved-admin"
+          element={
+            <ProtectedRoute>
+              <FuelStations />
             </ProtectedRoute>
           }
         />

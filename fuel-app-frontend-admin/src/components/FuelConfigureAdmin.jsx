@@ -23,7 +23,7 @@ const Configure = () => {
     let decoded;
     try {
       decoded = jwtDecode(token);
-      console.log("JWT Payload:", decoded); // Debug JWT payload
+      // console.log("JWT Payload:", decoded); // Debug JWT payload
     } catch (e) {
       setError("Invalid token. Please log in again.");
       localStorage.removeItem("token");
@@ -40,7 +40,7 @@ const Configure = () => {
     const fetchVehicleTypes = async () => {
       try {
         const response = await api.get("/station/vehicle-types/all");
-        console.log("API Response:", response.data); // Debug API response
+        // console.log("API Response:", response.data); // Debug API response
         setVehicleTypes(response.data);
         // Initialize quotas state with current values
         const initialQuotas = {};
