@@ -5,6 +5,7 @@ import com.fuelapp.model.FuelStation;
 import com.fuelapp.model.User;
 import com.fuelapp.repository.FuelStationRepository;
 import com.fuelapp.repository.UserRepository;
+import com.fuelapp.repository.VehicleTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,9 @@ public class FuelStationService {
 
     @Autowired
     private UserRepository userRepo;
+
+    @Autowired
+    private VehicleTypeRepository vehicleRepo;
 
     public FuelStation createFuelStation(FuelStationRequestDTO dto) {
         User user = userRepo.findById(dto.getUserId())
@@ -51,8 +55,17 @@ public class FuelStationService {
     public List<FuelStation> getAllStations() {
         return stationRepo.findAll();
     }
+
     public Optional<FuelStation> getFuelStationByUserId(Integer userId) {
         return stationRepo.findByUser_Id(userId);
     }
 
+    // NEW METHODS
+    public Long getVehicleCount() {
+        return vehicleRepo.count();
+    }
+
+    public Long getOwnerCount() {
+        return stationRepo.countDistinctOwners();
+    }
 }

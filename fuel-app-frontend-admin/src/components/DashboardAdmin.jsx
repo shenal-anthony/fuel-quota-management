@@ -7,6 +7,10 @@ import "./common.css";
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const [fuelStations, setFuelStations] = useState([]);
+  const [pendingCount, setPendingCount] = useState(0);
+  const [approvedCount, setApprovedCount] = useState(0);
+  const [vehicleCount, setVehicleCount] = useState(0);
+  const [ownerCount, setOwnerCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -34,12 +38,13 @@ const AdminDashboard = () => {
       return;
     }
 
-    const fetchFuelStations = async () => {
+    const fetchData = async () => {
       try {
-        const response = await api.get("/station/all");
-        // console.log("API Response:", response.data); // Debug API response
-        const mappedStations = response.data
-          .filter((station) => !station.isApproved) // Show only pending stations
+        // Fetch fuel stations
+        const stationsResponse = await api.get("/station/all");
+        // console.log("Stations API Response:", stationsResponse.data);
+        const mappedStations = stationsResponse.data
+          .filter((station) => !station.isApproved)
           .map((station) => ({
             ...station,
             address: [
@@ -55,29 +60,43 @@ const AdminDashboard = () => {
             ownerName: station.user?.username || "Unknown",
           }));
         setFuelStations(mappedStations);
+        setPendingCount(stationsResponse.data.filter((s) => !s.isApproved).length);
+        setApprovedCount(stationsResponse.data.filter((s) => s.isApproved).length);
+
+        // Fetch vehicle count
+        const vehicleResponse = await api.get("/station/vehicles/count");
+        // console.log("Vehicle Count Response:", vehicleResponse.data);
+        setVehicleCount(vehicleResponse.data);
+
+        // Fetch owner count
+        const ownerResponse = await api.get("/station/owners/count");
+        // console.log("Owner Count Response:", ownerResponse.data);
+        setOwnerCount(ownerResponse.data);
       } catch (error) {
-        console.error("Error fetching fuel stations:", error);
+        console.error("Error fetching data:", error);
         if (error.response?.status === 403) {
           setError("Access denied: Invalid or expired token. Please log in again.");
           localStorage.removeItem("token");
           navigate("/login");
         } else {
-          setError("Failed to load fuel station data");
+          setError("Failed to load dashboard data");
         }
       } finally {
         setLoading(false);
       }
     };
 
-    fetchFuelStations();
+    fetchData();
   }, [navigate]);
 
   const handleApprove = async (stationId) => {
     try {
       await api.post(`/station/approve/${stationId}`);
       setFuelStations((prev) =>
-        prev.filter((station) => station.id !== stationId) // Remove approved station
+        prev.filter((station) => station.id !== stationId)
       );
+      setPendingCount((prev) => prev - 1);
+      setApprovedCount((prev) => prev + 1);
     } catch (error) {
       console.error("Error approving fuel station:", error);
       setError("Failed to approve fuel station");
@@ -95,6 +114,26 @@ const AdminDashboard = () => {
       </h1>
 
       {error && <p className="error-message">{error}</p>}
+
+      {/* Widgets */}
+      <div className="widget-container">
+        <div className="widget">
+          <h3>Pending Stations</h3>
+          <p>{pendingCount}</p>
+        </div>
+        <div className="widget">
+          <h3>Approved Stations</h3>
+          <p>{approvedCount}</p>
+        </div>
+        <div className="widget">
+          <h3>Total Vehicles</h3>
+          <p>{vehicleCount}</p>
+        </div>
+        <div className="widget">
+          <h3>Station Owners</h3>
+          <p>{ownerCount}</p>
+        </div>
+      </div>
 
       {fuelStations.length === 0 ? (
         <p>No pending fuel stations available</p>

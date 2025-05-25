@@ -1,10 +1,10 @@
 package com.fuelapp.repository;
 
-import com.fuelapp.model.Vehicle;
-import com.fuelapp.model.VehicleType;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
+import com.fuelapp.model.VehicleType;
 
 public interface VehicleTypeRepository extends JpaRepository<VehicleType, Integer> {
     Optional<VehicleType> findByTypeName(String licensePlate);

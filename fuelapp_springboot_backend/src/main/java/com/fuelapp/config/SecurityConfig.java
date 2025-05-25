@@ -42,14 +42,16 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/station/approve/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/station/own-stations").hasAuthority("ROLE_USER")
                         .requestMatchers(HttpMethod.GET, "/api/station/vehicle-types/all").hasAuthority("ROLE_ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/station/vehicle-types/update-quota/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/station/vehicle-types/update-quota/**")
+                        .hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/station/vehicle-types/add").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/station/vehicles/count").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/station/owners/count").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/api/signup/**").permitAll()
                         .requestMatchers("/qrcodes/**").permitAll()
                         .requestMatchers("/api/vehicles/**").hasAuthority("ROLE_USER")
                         .requestMatchers("/api/fuel/vehicle-info").permitAll()
-                        .anyRequest().authenticated()
-                )
+                        .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
@@ -60,8 +62,7 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(List.of(
                 "http://localhost:5173",
                 "http://localhost:5174",
-                "http://localhost:5175"
-        ));
+                "http://localhost:5175"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);

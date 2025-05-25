@@ -29,7 +29,7 @@ function App() {
         ) : (
           <>
             <Link to="/dashboard-admin">Dashboard</Link>
-            <Link to="/configure-admin">Fuel Configure</Link>
+            <Link to="/configure-admin">Quota Configuration</Link>
             <Link to="/approved-admin">Fuel Stations</Link>
 
             <button onClick={handleLogout}>Logout</button>

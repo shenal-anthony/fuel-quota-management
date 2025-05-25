@@ -72,19 +72,31 @@ public class FuelStationController {
         return ResponseEntity.ok(updated);
     }
 
-    // NEW CODE STARTS HERE
     @PostMapping("/vehicle-types/add")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<VehicleType> addVehicleType(@RequestBody VehicleTypeRequest request) {
         VehicleType created = vehicleTypeService.createVehicleType(
-            request.getTypeName(),
-            request.getDefaultQuota()
-        );
+                request.getTypeName(),
+                request.getDefaultQuota());
         return ResponseEntity.ok(created);
+    }
+
+    // NEW CODE STARTS HERE
+    @GetMapping("/vehicles/count")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Long> getVehicleCount() {
+        Long count = stationService.getVehicleCount();
+        return ResponseEntity.ok(count);
+    }
+
+    @GetMapping("/owners/count")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Long> getOwnerCount() {
+        Long count = stationService.getOwnerCount();
+        return ResponseEntity.ok(count);
     }
 }
 
-// EXISTING INNER CLASS
 class QuotaRequest {
     private BigDecimal defaultQuota;
 
@@ -97,7 +109,6 @@ class QuotaRequest {
     }
 }
 
-// NEW INNER CLASS
 class VehicleTypeRequest {
     private String typeName;
     private BigDecimal defaultQuota;
