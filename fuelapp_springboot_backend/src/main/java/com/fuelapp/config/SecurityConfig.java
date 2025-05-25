@@ -35,18 +35,14 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-<<<<<<< Updated upstream
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/signup/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/station/register").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/station/all").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/station/approve/**").hasAuthority("ROLE_ADMIN")
-                        .requestMatchers("/qrcodes/**").hasAuthority("ROLE_USER")
-=======
                         .requestMatchers(String.valueOf(HttpMethod.OPTIONS), "/**").permitAll()
                         .requestMatchers("/api/signup/**").permitAll()
                         .requestMatchers("/qrcodes/**").permitAll()
->>>>>>> Stashed changes
                         .requestMatchers("/api/vehicles/**").hasAuthority("ROLE_USER")
                         .anyRequest().authenticated()
                 )
