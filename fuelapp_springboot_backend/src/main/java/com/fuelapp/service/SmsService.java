@@ -28,7 +28,7 @@ public class SmsService {
             }
 
             // Uncomment below for real Twilio integration
-            /*
+
             Twilio.init(twilioAccountSid, twilioAuthToken);
 
             Message twilioMessage = Message.creator(
@@ -38,7 +38,7 @@ public class SmsService {
             ).create();
 
             System.out.printf("SMS sent successfully. SID: %s\n", twilioMessage.getSid());
-            */
+
 
         } catch (Exception e) {
             System.err.printf("Failed to send SMS: %s\n", e.getMessage());

@@ -44,6 +44,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/signup/**").permitAll()
                         .requestMatchers("/qrcodes/**").permitAll()
                         .requestMatchers("/api/vehicles/**").hasAuthority("ROLE_USER")
+                        .requestMatchers("/api/fuel/vehicle-info").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
