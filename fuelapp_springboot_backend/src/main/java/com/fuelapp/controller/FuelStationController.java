@@ -2,12 +2,15 @@ package com.fuelapp.controller;
 
 import com.fuelapp.dto.FuelStationRequestDTO;
 import com.fuelapp.model.FuelStation;
+import com.fuelapp.model.VehicleType;
 import com.fuelapp.service.FuelStationService;
+import com.fuelapp.service.VehicleTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -48,5 +51,38 @@ public class FuelStationController {
         } else {
             return ResponseEntity.noContent().build();
         }
+    }
+
+    // NEW CODE STARTS HERE
+    @Autowired
+    private VehicleTypeService vehicleTypeService;
+
+    @GetMapping("/vehicle-types/all")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<VehicleType>> getAllVehicleTypes() {
+        List<VehicleType> types = vehicleTypeService.getAllVehicleTypes();
+        return ResponseEntity.ok(types);
+    }
+
+    @PostMapping("/vehicle-types/update-quota/{typeId}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<VehicleType> updateQuota(
+            @PathVariable Integer typeId,
+            @RequestBody QuotaRequest request) {
+        VehicleType updated = vehicleTypeService.updateQuota(typeId, request.getDefaultQuota());
+        return ResponseEntity.ok(updated);
+    }
+}
+
+// NEW INNER CLASS
+class QuotaRequest {
+    private BigDecimal defaultQuota;
+
+    public BigDecimal getDefaultQuota() {
+        return defaultQuota;
+    }
+
+    public void setDefaultQuota(BigDecimal defaultQuota) {
+        this.defaultQuota = defaultQuota;
     }
 }

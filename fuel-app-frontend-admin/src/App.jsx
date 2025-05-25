@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import DashboardAdmin from "./components/DashboardAdmin";
+import FuelConfigure from "./components/FuelConfigureAdmin";
 import ProtectedRoute from "./components/ProtectedRoute";
 import "./components/common.css";
 
@@ -26,6 +27,7 @@ function App() {
         ) : (
           <>
             <Link to="/dashboard-admin">Dashboard</Link>
+            <Link to="/configure-admin">Fuel Configure</Link>
             <button onClick={handleLogout}>Logout</button>
           </>
         )}
@@ -41,6 +43,14 @@ function App() {
           element={
             <ProtectedRoute>
               <DashboardAdmin />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/configure-admin"
+          element={
+            <ProtectedRoute>
+              <FuelConfigure />
             </ProtectedRoute>
           }
         />
