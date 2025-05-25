@@ -1,68 +1,87 @@
-import React, { useEffect, useState } from 'react';
-import api from '../services/api';
-import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
-import './common.css';
+import React, { useEffect, useState } from "react";
+import api from "../services/api";
+import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+import "./common.css";
 
-const DashboardVehicleOwner = () => {
+const AdminDashboard = () => {
   const navigate = useNavigate();
-  const [vehicles, setVehicles] = useState([]);
-  const [qrCodes, setQrCodes] = useState({});
+  const [fuelStations, setFuelStations] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
-      navigate('/login');
+      navigate("/login");
       return;
     }
 
-    const fetchVehicles = async () => {
+    let decoded;
+    try {
+      decoded = jwtDecode(token);
+      console.log("JWT Payload:", decoded); // Debug JWT payload
+    } catch (e) {
+      setError("Invalid token. Please log in again.");
+      localStorage.removeItem("token");
+      navigate("/login");
+      return;
+    }
+
+    if (decoded.role !== "ROLE_ADMIN") {
+      setError("Access denied: Admin role required");
+      setLoading(false);
+      return;
+    }
+
+    const fetchFuelStations = async () => {
       try {
-        const decoded = jwtDecode(token);
-        const userId = decoded.userId || decoded.id || decoded.sub;
-
-        const response = await api.post('/vehicles/own-vehicles', { userId });
-        setVehicles(response.data);
-
-        const qrMap = {};
-        for (const vehicle of response.data) {
-          if (vehicle.qrCodeUrl) {
-            const cleanPath = vehicle.qrCodeUrl.replace(/\\/g, '/');
-            const imageUrl = `http://localhost:8080/${cleanPath}`;
-
-            try {
-              const imageRes = await fetch(imageUrl, {
-                headers: {
-                  Authorization: `${token}`,
-                },
-              });
-
-              if (imageRes.ok) {
-                const blob = await imageRes.blob();
-                const blobUrl = URL.createObjectURL(blob);
-                qrMap[vehicle.id] = blobUrl;
-              }
-            } catch (error) {
-              console.error('Error fetching QR code image:', error);
-            }
-          }
-        }
-        setQrCodes(qrMap);
+        const response = await api.get("/station/all");
+        console.log("API Response:", response.data); // Debug API response
+        const mappedStations = response.data.map((station) => ({
+          ...station,
+          address: [
+            station.addressNo,
+            station.streetName,
+            station.city,
+            station.district,
+            station.province,
+          ]
+            .filter(Boolean)
+            .join(", ")
+            .trim(),
+          ownerName: station.user?.username || "Unknown",
+        }));
+        setFuelStations(mappedStations);
       } catch (error) {
-        console.error('Error in dashboard:', error);
-        setError('Failed to load vehicle data');
+        console.error("Error fetching fuel stations:", error);
+        if (error.response?.status === 403) {
+          setError("Access denied: Invalid or expired token. Please log in again.");
+          localStorage.removeItem("token");
+          navigate("/login");
+        } else {
+          setError("Failed to load fuel station data");
+        }
       } finally {
         setLoading(false);
       }
     };
 
-    fetchVehicles();
+    fetchFuelStations();
   }, [navigate]);
 
-  const handleAddVehicle = () => {
-    navigate('/add-vehicle');
+  const handleApprove = async (stationId) => {
+    try {
+      await api.post(`/station/approve/${stationId}`);
+      setFuelStations((prev) =>
+        prev.map((station) =>
+          station.id === stationId ? { ...station, isApproved: true } : station
+        )
+      );
+    } catch (error) {
+      console.error("Error approving fuel station:", error);
+      setError("Failed to approve fuel station");
+    }
   };
 
   if (loading) {
@@ -71,39 +90,57 @@ const DashboardVehicleOwner = () => {
 
   return (
     <div className="dashboard-container">
-      <h1 className="dashboard-heading">My Vehicles</h1>
-      
+      <h1 className="dashboard-heading">
+        Admin Dashboard - Approve Fuel Stations
+      </h1>
+
       {error && <p className="error-message">{error}</p>}
-      
-      {vehicles.length === 0 ? (
-        <p className="success-message">No vehicles found. Add your first vehicle below!</p>
+
+      {fuelStations.length === 0 ? (
+        <p>No fuel stations available</p>
       ) : (
-        <ul className="vehicle-list">
-          {vehicles.map((vehicle) => (
-            <li key={vehicle.id} className="vehicle-card">
-              <p><strong>Plate No:</strong> {vehicle.licensePlate}</p>
-              <p><strong>Type:</strong> {vehicle.type}</p>
-              <p><strong>Fuel Type:</strong> {vehicle.fuelType}</p>
-              {qrCodes[vehicle.id] && (
-                <div className="qr-section">
-                  <img src={qrCodes[vehicle.id]} alt="QR Code" />
-                  <br />
-                  <a
-                    href={qrCodes[vehicle.id]}
-                    download={`vehicle-${vehicle.id}-qrcode.png`}
-                    className="download-button"
-                  >
-                    ⬇️ Download QR Code
-                  </a>
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>ID</th>
+              <th>Station Name</th>
+              <th>Owner</th>
+              <th>Address</th>
+              <th>Contact</th>
+              <th>Email</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {fuelStations.map((station, index) => (
+              <tr key={station.id}>
+                <td>{index + 1}</td>
+                <td>{station.id}</td>
+                <td>{station.stationName}</td>
+                <td>{station.ownerName}</td>
+                <td>{station.address || "-"}</td>
+                <td>{station.contactNumber || "-"}</td>
+                <td>{station.email || "-"}</td>
+                <td>{station.isApproved ? "Approved" : "Pending"}</td>
+                <td>
+                  {!station.isApproved && (
+                    <button
+                      className="approve-button"
+                      onClick={() => handleApprove(station.id)}
+                    >
+                      Approve
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
-      <button onClick={handleAddVehicle} className="add-vehicle-button">➕ Add Vehicle</button>
     </div>
   );
 };
 
-export default DashboardVehicleOwner;
+export default AdminDashboard;
