@@ -1,31 +1,389 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
 
-*{
+:root {
+  /* Color Palette Variables */
+  --bg-primary: #f2f3f5;
+  --success-primary: #8a9a6d;
+  --text-primary: #34495e;
+  --warning-primary: #c17d74;
+  --interactive-primary: #7293b2;
+  
+  /* Semantic Color Variables */
+  --color-background: var(--bg-primary);
+  --color-surface: #ffffff;
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: #5a6c7d;
+  --color-success: var(--success-primary);
+  --color-warning: var(--warning-primary);
+  --color-interactive: var(--interactive-primary);
+  --color-interactive-hover: #5d7d9a;
+  --color-interactive-active: #4a6b87;
+  
+  /* Spacing Scale */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 40px;
+  
+  /* Typography Scale */
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 28px;
+  
+  /* Border Radius Scale */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+  
+  /* Shadow Scale */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+  --shadow-focus: 0 0 0 2px rgba(114, 147, 178, 0.2);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease-out;
+  --transition-base: 0.3s ease-out;
+  --transition-slow: 0.5s ease-out;
+}
+
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: Outfit;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   scroll-behavior: smooth;
 }
 
-body{
-  min-height: 100vh;
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-a{
+body {
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Enhanced Button Base Styles with Better Contrast */
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Universal Button Focus State - High Contrast */
+button:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid var(--color-interactive);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 0 0 1px rgba(114, 147, 178, 0.3);
+}
+
+/* Generic Button Classes with High Contrast */
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn--primary:hover {
+  background-color: var(--color-interactive-hover);
+  box-shadow: 0 4px 12px rgba(114, 147, 178, 0.3);
+}
+
+.btn--primary:active {
+  background-color: var(--color-interactive-active);
+  box-shadow: 0 2px 6px rgba(114, 147, 178, 0.2);
+}
+
+.btn--success:hover {
+  background-color: #6d7a56;
+  box-shadow: 0 4px 12px rgba(138, 154, 109, 0.3);
+}
+
+.btn--success:active {
+  background-color: #5a6647;
+  box-shadow: 0 2px 6px rgba(138, 154, 109, 0.2);
+}
+
+a {
   text-decoration: none;
   color: inherit;
-}
-.app{
-  width: 88%; 
-  margin: auto;
+  transition: color var(--transition-base), opacity var(--transition-base);
+  cursor: pointer;
 }
 
-@keyframes fadeIn{
-  0%{
+a:hover {
+  color: var(--color-interactive);
+  opacity: 0.8;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-interactive);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+a:active {
+  color: var(--color-interactive-active);
+}
+
+.app {
+  width: min(88%, 1200px);
+  margin: 0 auto;
+  padding: var(--spacing-md);
+  position: relative;
+}
+
+/* Enhanced fadeIn animation with better performance */
+@keyframes fadeIn {
+  0% {
     opacity: 0;
+    transform: translateY(10px);
   }
-  100%{
+  100% {
     opacity: 1;
+    transform: translateY(0);
   }
+}
+
+/* Additional utility animations */
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* High Contrast Mode Enhancements */
+@media (prefers-contrast: high) {
+  button:focus-visible,
+  .btn:focus-visible {
+    outline: 4px solid #000000;
+    outline-offset: 2px;
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  button:hover,
+  .btn:hover {
+    background-color: #000000;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+  }
+}
+
+/* Keyboard Navigation Enhancement */
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Disabled State Styling */
+button:disabled,
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+button:disabled:hover,
+.btn:disabled:hover {
+  background-color: initial;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Focus management for better accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-interactive);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Remove default focus outline for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Improved button and interactive element base styles */
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Utility classes for common patterns */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Responsive typography and spacing */
+@media (max-width: 768px) {
+  body {
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+  }
+  
+  .app {
+    width: 95%;
+    padding: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    width: 100%;
+    padding: var(--spacing-xs);
+  }
+}
+
+/* Large screen optimizations */
+@media (min-width: 1400px) {
+  body {
+    font-size: var(--font-size-lg);
+  }
+  
+  .app {
+    padding: var(--spacing-xl);
+  }
+}
+
+/* Dark mode preference (if you want to add it later) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #1a1a1a;
+    --color-surface: #2d2d2d;
+    --color-text-primary: #e0e0e0;
+    --color-text-secondary: #b0b0b0;
+  }
+}
+
+/* Reduced motion preference for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  .app {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  a {
+    text-decoration: underline;
+  }
+}
+
+/* Performance optimizations */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Smooth scrolling for supported browsers */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better text selection */
+::selection {
+  background-color: var(--color-interactive);
+  color: var(--color-surface);
+}
+
+::-moz-selection {
+  background-color: var(--color-interactive);
+  color: var(--color-surface);
 }
