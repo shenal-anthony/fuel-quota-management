@@ -53,7 +53,6 @@ public class FuelStationController {
         }
     }
 
-    // NEW CODE STARTS HERE
     @Autowired
     private VehicleTypeService vehicleTypeService;
 
@@ -72,11 +71,44 @@ public class FuelStationController {
         VehicleType updated = vehicleTypeService.updateQuota(typeId, request.getDefaultQuota());
         return ResponseEntity.ok(updated);
     }
+
+    // NEW CODE STARTS HERE
+    @PostMapping("/vehicle-types/add")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<VehicleType> addVehicleType(@RequestBody VehicleTypeRequest request) {
+        VehicleType created = vehicleTypeService.createVehicleType(
+            request.getTypeName(),
+            request.getDefaultQuota()
+        );
+        return ResponseEntity.ok(created);
+    }
+}
+
+// EXISTING INNER CLASS
+class QuotaRequest {
+    private BigDecimal defaultQuota;
+
+    public BigDecimal getDefaultQuota() {
+        return defaultQuota;
+    }
+
+    public void setDefaultQuota(BigDecimal defaultQuota) {
+        this.defaultQuota = defaultQuota;
+    }
 }
 
 // NEW INNER CLASS
-class QuotaRequest {
+class VehicleTypeRequest {
+    private String typeName;
     private BigDecimal defaultQuota;
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
 
     public BigDecimal getDefaultQuota() {
         return defaultQuota;

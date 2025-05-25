@@ -43,6 +43,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/station/own-stations").hasAuthority("ROLE_USER")
                         .requestMatchers(HttpMethod.GET, "/api/station/vehicle-types/all").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/station/vehicle-types/update-quota/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/station/vehicle-types/add").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/api/signup/**").permitAll()
                         .requestMatchers("/qrcodes/**").permitAll()
                         .requestMatchers("/api/vehicles/**").hasAuthority("ROLE_USER")

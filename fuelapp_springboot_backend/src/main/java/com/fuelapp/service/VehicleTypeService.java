@@ -24,4 +24,17 @@ public class VehicleTypeService {
         type.setDefaultQuota(defaultQuota);
         return vehicleTypeRepo.save(type);
     }
+
+    public VehicleType createVehicleType(String typeName, BigDecimal defaultQuota) {
+        if (typeName == null || typeName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Vehicle type name is required");
+        }
+        if (defaultQuota == null || defaultQuota.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Default quota must be positive");
+        }
+        VehicleType type = new VehicleType();
+        type.setTypeName(typeName.trim());
+        type.setDefaultQuota(defaultQuota);
+        return vehicleTypeRepo.save(type);
+    }
 }

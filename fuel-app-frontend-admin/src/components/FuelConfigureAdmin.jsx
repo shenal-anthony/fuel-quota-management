@@ -10,6 +10,8 @@ const Configure = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [quotas, setQuotas] = useState({}); // Store new quotas
+  const [newTypeName, setNewTypeName] = useState("");
+  const [newQuota, setNewQuota] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -93,6 +95,36 @@ const Configure = () => {
     }
   };
 
+  const handleAddVehicleType = async (e) => {
+    e.preventDefault();
+    if (!newTypeName.trim()) {
+      setError("Vehicle type name is required");
+      return;
+    }
+    if (!newQuota || isNaN(newQuota) || Number(newQuota) <= 0) {
+      setError("Please enter a valid positive fuel quota");
+      return;
+    }
+
+    try {
+      const response = await api.post("/station/vehicle-types/add", {
+        typeName: newTypeName.trim(),
+        defaultQuota: Number(newQuota),
+      });
+      setVehicleTypes((prev) => [...prev, response.data]);
+      setQuotas((prev) => ({
+        ...prev,
+        [response.data.id]: response.data.defaultQuota?.toString() || "",
+      }));
+      setNewTypeName("");
+      setNewQuota("");
+      setError(""); // Clear error on success
+    } catch (error) {
+      console.error("Error adding vehicle type:", error);
+      setError("Failed to add vehicle type");
+    }
+  };
+
   if (loading) {
     return <div className="dashboard-container">Loading...</div>;
   }
@@ -104,6 +136,29 @@ const Configure = () => {
       </h1>
 
       {error && <p className="error-message">{error}</p>}
+
+      {/* Add Vehicle Type Form */}
+      <form onSubmit={handleAddVehicleType} className="add-vehicle-type-form">
+        <input
+          type="text"
+          value={newTypeName}
+          onChange={(e) => setNewTypeName(e.target.value)}
+          placeholder="Enter vehicle type (e.g., Van)"
+          className="vehicle-type-input"
+        />
+        <input
+          type="number"
+          value={newQuota}
+          onChange={(e) => setNewQuota(e.target.value)}
+          placeholder="Enter default quota"
+          className="fuel-limit-input"
+          min="0"
+          step="1"
+        />
+        <button type="submit" className="add-button">
+          Add Vehicle Type
+        </button>
+      </form>
 
       {vehicleTypes.length === 0 ? (
         <p>No vehicle types available</p>
